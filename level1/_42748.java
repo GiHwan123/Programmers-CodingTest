@@ -10,7 +10,9 @@ public class _42748 {
 							{4, 4, 1}, 
 							{1, 7, 3}};
 		int answer[] = solution(array,commands);
+		int[] temp = Arrays.copyOfRange(array, 4, 7);//copyofRange 메소드(배열을 일정부분 짤라서 그대로 가져오는 메소드)
 		System.out.println(Arrays.toString(answer));
+		System.out.println(Arrays.toString(temp));
 	}
 	
 	public static int[] solution(int[] array, int[][] commands) {
