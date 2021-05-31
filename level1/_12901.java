@@ -5,6 +5,8 @@ public class _12901 {
 	public static void main(String[] args) {
 		int a=3;
 		int b=1;
+		String str = "123asdf";
+		System.out.println(str.substring(1,5));
 		String answer = solution(a,b);
 		System.out.println(answer);
 	}

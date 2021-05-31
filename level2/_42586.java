@@ -10,40 +10,37 @@ public class _42586 {
 		System.out.println(Arrays.toString(answer));
 	}
 	public static int[] solution(int[] progresses, int[] speeds) {
-	       
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        ArrayList<Integer> arr2 = new ArrayList<Integer>();
-        //진도를 모두 완료하기까지 걸리는 시간을 구해 ArrayList에 값 할당
+        
+        ArrayList<Integer> arr1 = new ArrayList<>();
+        ArrayList<Integer> arr2 = new ArrayList<>();
+       //잔업을 완수하기까지 남은 일수를 계산하여 arr1에 삽입
         for(int i=0;i<progresses.length;i++){
-            
-            int rest = 100 - progresses[i];
-            int speed = speeds[i];
-            int cnt=0;
-            if(rest%speed == 0)
-            	cnt = rest/speed;
-            else if(rest%speed != 0)
-            	cnt = (rest/speed)+1;
-            arr.add(cnt);
+            int num=0;
+            num = 100 - progresses[i];
+            if(num%speeds[i]!=0){
+                num=num/speeds[i] + 1;
+            }
+            else{num = num / speeds[i];}
+            arr1.add(num);
         }
-        //ArrayList에 저장된 값들 중 가장 앞의값보다 작은 값들 모두 도출하여 그 숫자를 구해 또 다른 ArrayList에 저장.
-        for(int i=0;i<arr.size();i++){
+        //남은일수가 계산된 arr1의 값을 이용하여 첫 값보다 작은값들은 모두 첫 값이 배포되는 날에 배포될 것이므로 해당 값들 모두 산출하여 arr2에 저장
+        for(int i=0;i<arr1.size();i++){
             int cnt=1;
-            for(int j=i+1;j<arr.size();j++){
-                if(j>=arr.size())
-                    break;
-                if(arr.get(i)>=arr.get(j)){
+            for(int j=i+1;j<arr1.size();j++){
+                if(arr1.get(i)>=arr1.get(j)){
                     cnt++;
-                    continue;
                 }
-                else
+                else{
                     break;
+                }
+                
             }
             arr2.add(cnt);
-            i=i+cnt-1;
+            i= i + cnt -1;
         }
-        //최종적으로 저장된 ArrayList2의 값들을 answer로 return
+        //arr2에 저장된 값들을 answer에 옮김.
         int[] answer = new int[arr2.size()];
-        for(int i=0;i<answer.length;i++){
+        for(int i=0;i<arr2.size();i++){
             answer[i]=arr2.get(i);
         }
         return answer;
